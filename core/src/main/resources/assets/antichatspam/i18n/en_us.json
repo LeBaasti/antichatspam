@@ -1,0 +1,14 @@
+{
+  "antichatspam": {
+    "settings": {
+      "name": "AntiChatSpam",
+      "enabled": {
+        "name": "Enabled"
+      },
+      "amount": {
+        "name": "Amount",
+        "description": "Amount when duplicate messages should be stacked"
+      }
+    }
+  }
+}
