@@ -31,14 +31,18 @@ public class AntiChatSpam extends LabyAddon<Configuration> {
 
   @Subscribe
   public void onSubServerSwitch(SubServerSwitchEvent event) {
-    duplicateMessages.clear();
-    duplicateMessageCount.clear();
+    if(configuration().subServerSwitchReset().get()) {
+      duplicateMessages.clear();
+      duplicateMessageCount.clear();
+    }
   }
 
   @Subscribe
   public void onServerJoin(ServerJoinEvent event) {
-    duplicateMessages.clear();
-    duplicateMessageCount.clear();
+    if(configuration().serverSwitchReset().get()) {
+      duplicateMessages.clear();
+      duplicateMessageCount.clear();
+    }
   }
 
   @Subscribe
@@ -50,9 +54,15 @@ public class AntiChatSpam extends LabyAddon<Configuration> {
     if (count >= configuration().amount().get()) {
       duplicates.forEach(ChatMessage::delete);
       duplicates.clear();
-      event.chatMessage().component().append(Component.text(" [x" + count + "]"));
+      event.chatMessage().component().append(Component.text(getDuplicateText(count)));
     }
 
     duplicates.add(event.chatMessage());
+  }
+
+  public String getDuplicateText(int count) {
+    return configuration().text().get()
+        .replace("%amount%", Integer.toString(count))
+        .replace("&", "§");
   }
 }

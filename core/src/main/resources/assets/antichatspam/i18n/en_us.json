@@ -8,6 +8,18 @@
       "amount": {
         "name": "Amount",
         "description": "Amount when duplicate messages should be stacked"
+      },
+      "text": {
+        "name": "Text",
+        "description": "Text that appears after the message"
+      },
+      "serverSwitchReset": {
+        "name": "Server Switch Reset",
+        "description": "Whether the duplicate list should be reseted on server switch"
+      },
+      "subServerSwitchReset": {
+        "name": "Sub Server Switch Reset",
+        "description": "Whether the duplicate list should be reseted on sub server switch"
       }
     }
   }
